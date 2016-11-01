@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="MeshBuilderWithColorGUIController.cs" company="Google">
+// <copyright file="MeshBuilderWithPhysicsGUIController.cs" company="Google">
 //
 // Copyright 2016 Google Inc. All Rights Reserved.
 //
@@ -24,7 +24,7 @@ using UnityEngine;
 /// <summary>
 /// Extra GUI controls.
 /// </summary>
-public class MeshBuilderWithColorGUIController : MonoBehaviour
+public class MeshBuilderWithPhysicsGUIController : MonoBehaviour
 {
     /// <summary>
     /// If set, grid indices will stop meshing when they have been sufficiently observed.
@@ -85,5 +85,19 @@ public class MeshBuilderWithColorGUIController : MonoBehaviour
             m_dynamicMesh.ExportMeshToObj(filepath);
             Debug.Log(filepath);
         }
+    }
+
+    /// <summary>
+    /// Called after the application gets paused or resumed.
+    /// </summary>
+    /// <param name="pauseStatus">
+    /// If set to <c>true</c> this is the pause event, otherwise this is the resume event.
+    /// </param>
+    public void OnApplicationPause(bool pauseStatus)
+    {
+        // Since motion tracking is lost when disconnected from Tango, any
+        // existing 3D reconstruction state no longer is lined up with the
+        // real world. Best we can do is clear the state.
+        m_dynamicMesh.Clear();
     }
 }

@@ -16,6 +16,7 @@ public class AirDraw : MonoBehaviour {
     [SerializeField]
     DrawButton drawBtn;
 
+
 	// Use this for initialization
 	void Start () {
         StartCoroutine("InputListener");
@@ -53,6 +54,7 @@ public class AirDraw : MonoBehaviour {
         while (true)
         {
             Debug.Log("Checking");
+            
             if (drawBtn.pressed)
             {
                 StartDraw();
@@ -61,6 +63,24 @@ public class AirDraw : MonoBehaviour {
             {
                 EndDraw();
             }
+
+            /*
+            foreach (Touch touch in Input.touches)
+            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    currentFingerId = touch.fingerId;
+                }
+
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    if (touch.fingerId == currentFingerId)
+                    {
+
+                    }
+                }
+            }
+            */
             yield return null;
         }
         
