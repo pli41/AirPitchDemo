@@ -31,22 +31,27 @@ public class AirDraw : MonoBehaviour {
 
     void StartDraw()
     {
+        
         if (currentTrail)
         {
             return;
         }
+        DebugLog.AddLog("StartDraw");
         currentTrail = Instantiate(trail, transform.position, transform.rotation, transform) as GameObject;
     }
 
     void EndDraw()
     {
+        
         if (!currentTrail)
         {
             return;
         }
+        
         savedTrails.Add(currentTrail.GetComponent<TrailRenderer>());
         currentTrail.transform.SetParent(savedTrailsObj);
         currentTrail = null;
+        DebugLog.AddLog("EndDraw; " + savedTrails.Count + " trails saved");
     }
 
     IEnumerator InputListener()
