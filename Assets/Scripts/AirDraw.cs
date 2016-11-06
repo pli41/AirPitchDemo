@@ -38,6 +38,7 @@ public class AirDraw : MonoBehaviour {
         }
         DebugLog.AddLog("StartDraw");
         currentTrail = Instantiate(trail, transform.position, transform.rotation, transform) as GameObject;
+        currentTrail.GetComponent<TrailRenderer>().material.color = ColorPicker.GetCurrentColor();
     }
 
     void EndDraw()
