@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ColorPicker : MonoBehaviour {
 
+    public static Color currentColor;
     // Color palette texture
     public Texture2D colorPalettes;
     // Number of rows in color palette texture
@@ -28,6 +30,11 @@ public class ColorPicker : MonoBehaviour {
     private int count;
     // color offsets for meshes
     private Vector2[] colorOffsets;
+
+    void Start()
+    {
+        currentColor = Color.white;
+    }
 
     void OnEnable()
     {
@@ -68,6 +75,12 @@ public class ColorPicker : MonoBehaviour {
             count = totalColorNum - 1;
 
         selectedColorImg.color = colorList[count];    //applies the color to the preview texture
+        currentColor = selectedColorImg.color;
+    }
+
+    public static Color GetCurrentColor()
+    {
+        return currentColor;
     }
 
     private Color32 SampleTexture(float xOffset, float yOffset)

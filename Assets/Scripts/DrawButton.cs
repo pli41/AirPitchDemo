@@ -13,7 +13,7 @@ public class DrawButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
 	
 	// Update is called once per frame
 	void Update () {
-		pressed = false;
+		
 	}
 		
 	void LateUpdate(){
@@ -26,14 +26,14 @@ public class DrawButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        //pressed = true;
-		Debug.Log("OnPointerDown");
+        pressed = true;
+		DebugLog.AddLog("OnPointerDown");
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        //pressed = false;
-		Debug.Log("OnPointerUp");
+        pressed = false;
+        DebugLog.AddLog("OnPointerUp");
     }
 
 }
